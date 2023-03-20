@@ -22,13 +22,13 @@ function findNthMax(nums, nth) {
   const len = nums.length;
   const realNth = nth > len ? len : nth;
   
-	for (let i=0; i < realNth; i++) {
+  for (let i=0; i < realNth; i++) {
     for (let j=i; j < len - 1; j++) {
       const n1 = nums[i];
       const n2 = nums[j + 1];
       if (n2 > n1) {
-          nums[i] = n2;
-          nums[j + 1] = n1;
+        nums[i] = n2;
+        nums[j + 1] = n1;
       } 
     }
   }
