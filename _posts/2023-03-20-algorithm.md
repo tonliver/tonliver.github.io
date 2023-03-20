@@ -17,7 +17,7 @@ layout: post
  * @param {number[]} nums 待查询数组
  * @param {number} nth 第几大的数
  * @returns {number}
- * */
+ */
 function findNthMax(nums, nth) {
   const len = nums.length;
   const realNth = nth > len ? len : nth;
@@ -39,6 +39,7 @@ function findNthMax(nums, nth) {
 console.log(findNthMax([2, 1, 4, 5, 6, 6], 2));
 ~~~
 顺手用vue组件写了个冒泡排序过程的动画，加深理解
+
 ![冒泡排序](/assets/imgs/bsort.gif)
 
 二、**归并排序**
@@ -116,4 +117,5 @@ qsort [] = []
 qsort (x:xs) = qsort [a | a <-xs, a < x ] ++ [x] ++ qsort [b | b <-xs, b >= x]
 ```
 为了给基友解释，还特意画了一张图
+
 ![haskell的快速排序](/assets/imgs/qsort.jpeg)
