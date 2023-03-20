@@ -12,26 +12,26 @@ layout: post
 
 这道题其实考的是冒泡排序，冒泡排序的特点是逐个将最大/小的数找出来，而本题只需要找到第k个最大的元素，所以冒泡到第k个数之后，就可以中止排序，无需将整个数组排序。
 
-```typescript
+```javascript
 /**
- * @param {number[]} 待查询数组
- * @param {number} 第几大的数
+ * @param {number[]} nums 待查询数组
+ * @param {number} nth 第几大的数
  * @returns {number}
  * */
 function findNthMax(nums, nth) {
-    const len = nums.length;
-  	const realNth = nth > len ? len : nth;
+  const len = nums.length;
+  const realNth = nth > len ? len : nth;
   
 	for (let i=0; i < realNth; i++) {
-    	for (let j=i; j < len - 1; j++) {
-        	const n1 = nums[i];
-          	const n2 = nums[j + 1];
-            if (n2 > n1) {
-          	    nums[i] = n2;
-                nums[j + 1] = n1;
-          } 
-        }
+    for (let j=i; j < len - 1; j++) {
+      const n1 = nums[i];
+      const n2 = nums[j + 1];
+      if (n2 > n1) {
+          nums[i] = n2;
+          nums[j + 1] = n1;
+      } 
     }
+  }
 
   return nums[nth - 1];
 }
@@ -44,6 +44,11 @@ console.log(findNthMax([2, 1, 4, 5, 6, 6], 2));
 二、**归并排序**
 
 ```typescript
+/**
+ * 归并排序
+ * @param {number[]} nums 待排序数组
+ * @returns {number[]} 由小到大排序后的数组 
+ */
 function mergeSort(nums) {
   const len = nums.length;
 
@@ -58,6 +63,12 @@ function mergeSort(nums) {
 
   return nums;
 }
+/**
+ * 将两个排好序的数组进行合并
+ * @param {number[]} a 待合并数组
+ * @param {number[]} b 待合并数组
+ * @returns {number[]}
+ */
 function merge(a, b) {
   const result = [];
 
