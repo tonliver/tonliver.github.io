@@ -12,12 +12,12 @@ layout: post
 
 这道题其实考的是冒泡排序，冒泡排序的特点是逐个将最大/小的数找出来，而本题只需要找到第k个最大的元素，所以冒泡到第k个数之后，就可以中止排序，无需将整个数组排序。
 
-```javascript
+``` javascript
 /**
  * @param {number[]} nums 待查询数组
  * @param {number} nth 第几大的数
  * @returns {number}
- * */
+ */
 function findNthMax(nums, nth) {
   const len = nums.length;
   const realNth = nth > len ? len : nth;
@@ -39,6 +39,7 @@ function findNthMax(nums, nth) {
 console.log(findNthMax([2, 1, 4, 5, 6, 6], 2));
 ```
 顺手用vue组件写了个冒泡排序过程的动画，加深理解
+
 ![冒泡排序](/assets/imgs/bsort.gif)
 
 二、**归并排序**
@@ -116,4 +117,5 @@ qsort [] = []
 qsort (x:xs) = qsort [a | a <-xs, a < x ] ++ [x] ++ qsort [b | b <-xs, b >= x]
 ```
 为了给基友解释，还特意画了一张图
+
 ![haskell的快速排序](/assets/imgs/qsort.jpeg)
