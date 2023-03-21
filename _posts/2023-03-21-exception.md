@@ -39,9 +39,22 @@ movieService处于较底层，它的职责是请求列表数据，知道数据�
     - 外部依赖
     - 接口的ret/retcode/code
 
-如下图，被除数为0，这是绝不允许出现的情况，所以当接受到被除数为0时，需要显式的抛出异常
+如下图，被除数为0，这是绝不允许出现的情况，所以当接受到被除数为0时，需要明确的抛出异常
 
-![参数校验](/assets/imgs/divide.png)
+```typescript
+/**
+ * 除法运算
+ * @param {number} a 被除数
+ * @param {number} b 除数
+ */
+function divide(a: number, b: number) {
+  if (b === 0) {
+    throw new Error('除数不能为0');
+  }
+
+  return a / b;
+}
+```
 
 ### 需要设计异常的情况
 
