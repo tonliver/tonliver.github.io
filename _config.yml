@@ -38,6 +38,9 @@ kramdown:
 
 syntax_highlighter_style: github
 
+tracker:
+  google_analytics: "G-BLMPZ4TL88"
+
 markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
