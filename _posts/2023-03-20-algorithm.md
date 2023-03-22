@@ -1,9 +1,10 @@
 ---
-title: 几道基础算法题
-author: 天枫皓月
-date: 2023-03-20
-category: javascript
 layout: post
+title: 几道基础算法题
+date: 2023-03-20
+Author: 天枫皓月
+tags: [技术, 算法]
+comments: false
 ---
 
 好基友最近在准备面试，没事刷刷算法题，发给了我几道，本着编程的乐趣，就一起尝试写了写。
