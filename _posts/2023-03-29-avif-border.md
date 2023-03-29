@@ -25,6 +25,7 @@ TImage同学给出的结论
 Math.round(originalWidth / 8) * 8
 ```
 例如：下图的原尺寸是750，750 / 8 = 93.7 => 94 * 8 = 752，于是thumbnail的值就是752x
+
 https://vfiles.gtimg.cn/vupload/20220919/596d2d1663581301955.png`?imageMogr2/thumbnail/752x`
 
 **注意：但是如果是通过背景图写在css中的，并被webpack的loader编译后，会将`imageMogr2/thumbnail/752x`中的`/`url encode，导致参数识别失败，会返回原图尺寸**
@@ -34,5 +35,7 @@ background-image:url('https://vfiles.gtimg.cn/vupload/20220919/596d2d16635813019
 ```
 这种情况可以通过手动下载缩放后符合尺寸的图，再重新上传，这样就能得到不用参数的符合尺寸的图了。
 
+```
 https://vfiles.gtimg.cn/vupload/20220919/596d2d1663581301955.png?imageMogr2/thumbnail/752x/format/png
 https://vip.image.video.qpic.cn/vupload/20230329/5ed2ea1680054190905.png
+```
