@@ -88,3 +88,4 @@ permalink: /about/
   * 富交互的微博
   * 互联网早期的hybrid应用
   * 支付上层应用，底层引擎
+* 有scrum敏捷过程管理经验
