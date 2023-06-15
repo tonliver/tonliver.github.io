@@ -50,17 +50,19 @@ export default {
       keyword: '',
       timer: null,
     };
-  }
-  handleInput() {
-    if (this.timer) {
-      clearTimeout(this.timer)
+  },
+  methods: {
+    handleInput() {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.search();
+      }, WAIT_TIME)
     }
-    this.timer = setTimeout(() => {
-      this.search();
-    }, WAIT_TIME)
-  }
-  search() {
-    // 发起请求
+    search() {
+      // 发起请求
+    }
   }
 }
 </script>
@@ -91,6 +93,36 @@ function debounce(fn: Func, wait: number): Func {
 }
 ```
 事实上，这个就叫做函数防抖(debounce)
+
+用这个封装好的防抖函数改写上面的例子，代码更简洁了，并且vue代码中只需要关注业务逻辑本身。当然，如果用了class风格的组件，还可以使用装饰器来包装，会更加优雅
+```vue
+<template>
+  <input v-model="keyword" @input="handleInput" />
+</template>
+
+<script>
+import debounce from './debounce.ts';
+
+const WAIT_TIME = 200;
+
+export default {
+  data() {
+    return {
+      keyword: '',
+      timer: null,
+    };
+  },
+  methods: {
+    handleInput: debounce(function () {
+      this.search();
+    }, WAIT_TIME),
+    search() {
+      // 发起请求
+    }
+  }
+}
+</script>
+```
 
 **官方定义：**触发事件后，在n秒后只能执行一次，如果在n秒内重复触发事件，则会重置等待时间。简单的说，当一个事件连续触发，只执行最后一次。
 
@@ -151,44 +183,46 @@ function debounce(fn: Func, wait: number): Func {
 
     mounted() {
       this.calculateScrollerHeight()
-    }
+    },
 
-    calculateScrollerHeight() {
-      this.scrollerHeight = this.$refs.scroller.clientHeight;
-      this.scrollerContentHeight = this.$refs.scrollerContent.clientHeight;
-    }
-    
-    handleScroll() {
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
+    methods: {
+      calculateScrollerHeight() {
+        this.scrollerHeight = this.$refs.scroller.clientHeight;
+        this.scrollerContentHeight = this.$refs.scrollerContent.clientHeight;
       }
-      const remainTime = Date.now() + WAIT_TIME - this.lastExecutionTime;
-      if (remainTime <= 0) {
-        this.tryLoadMore();
-      } else {
-        this.timer = setTimeout(() => {
-          this.tryLoadMore();
+      
+      handleScroll() {
+        if (this.timer) {
+          clearTimeout(this.timer);
           this.timer = null;
-        }, remainTime)
+        }
+        const remainTime = Date.now() + WAIT_TIME - this.lastExecutionTime;
+        if (remainTime <= 0) {
+          this.tryLoadMore();
+        } else {
+          this.timer = setTimeout(() => {
+            this.tryLoadMore();
+            this.timer = null;
+          }, remainTime)
+        }
       }
-    }
-
-    willLoadMore() {
-      const remainHeight = this.scrollerContentHeight - this.scrollerHeight - this.$refs.scroller.scrollTop;
-
-      return remainHeight <= REMAIN_HEIGHT_TO_LOAD_MORE;
-    }
-
-    tryLoadMore() {
-      this.lastExecutionTime = Date.now();
-      if (this.willLoadMore()) {
-        this.loadMore();
+  
+      willLoadMore() {
+        const remainHeight = this.scrollerContentHeight - this.scrollerHeight - this.$refs.scroller.scrollTop;
+  
+        return remainHeight <= REMAIN_HEIGHT_TO_LOAD_MORE;
       }
-    }
-
-    loadMore() {
-      // 加载更多的逻辑
+  
+      tryLoadMore() {
+        this.lastExecutionTime = Date.now();
+        if (this.willLoadMore()) {
+          this.loadMore();
+        }
+      }
+  
+      loadMore() {
+        // 加载更多的逻辑
+      }
     }
   };
 </script>
@@ -230,6 +264,68 @@ function throttle(fn: Func, wait: number): Func {
 }
 ```
 这个实现就是**函数节流(throttle)**
+
+使用节流函数改写上面的例子
+```vue
+<template>
+  <div class="scroller" ref="scroller" @scroll="handleScroll">
+    <ul class="scroller-content" ref="scrollerContent">
+      <li>无意义的内容</li>
+      <li>无意义的内容</li>
+      <li>无意义的内容</li>
+      <li>无意义的内容</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  import throttle from './throttle.ts';
+
+  const REMAIN_HEIGHT_TO_LOAD_MORE = 50;
+  const WAIT_TIME = 200;
+  export default {
+    data() {
+      return {
+        scrollerHeight: 0,
+        scrollerContentHeight: 0,
+        timer: null,
+        lastExecutionTime: 0,
+      };
+    }
+
+    mounted() {
+      this.calculateScrollerHeight()
+    },
+
+    methods: {
+      calculateScrollerHeight() {
+        this.scrollerHeight = this.$refs.scroller.clientHeight;
+        this.scrollerContentHeight = this.$refs.scrollerContent.clientHeight;
+      }
+      
+      handleScroll: throttle(function () {
+        this.tryLoadMore();
+      }, WAIT_TIME),
+  
+      willLoadMore() {
+        const remainHeight = this.scrollerContentHeight - this.scrollerHeight - this.$refs.scroller.scrollTop;
+  
+        return remainHeight <= REMAIN_HEIGHT_TO_LOAD_MORE;
+      }
+  
+      tryLoadMore() {
+        if (this.willLoadMore()) {
+          this.loadMore();
+        }
+      }
+  
+      loadMore() {
+        // 加载更多的逻辑
+      }
+    }
+  };
+</script>
+```
 
 **官方定义：**当一个函数连续多次被调用，在每个固定的时间周期内只执行一次
 
