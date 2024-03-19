@@ -92,7 +92,7 @@ tags: [技术,兼容性,Debug]
 ### 迭代四
 ##### 问题表现
 既然写到了迭代四，说明不出意外的话，应该是出意外了。这个demo项目又双叒叕白屏了！！！但好在VConsole出来了，项目组看到了DOM结构。
-![20240319085145](https://public.litong.life/blog/20240319085145.png?imageMogr2/quality/100/thumbnail/400x)
+![20240319085145](http://public.litong.life/blog/20240319085145.png?imageMogr2/quality/100/thumbnail/400x)
 
 ##### 原因分析
 可以看到整个app节点是空的，也就是说vue app没有挂载到DOM上，可能的原因有两个：
@@ -140,7 +140,7 @@ tags: [技术,兼容性,Debug]
 ```
 简单部署后，让项目组的同学访问了一下，果然看到了期望已久的报错信息
 
-![20240319093622](https://public.litong.life/blog/20240319093622.png)
+![20240319093622](http://public.litong.life/blog/20240319093622.png)
 
 ### 迭代五
 ##### 原因分析
@@ -148,9 +148,9 @@ tags: [技术,兼容性,Debug]
 
 我们可以通过这个网站查到指定的特性在各个平台的chrome的支持版本
 [https://chromestatus.com/features](https://chromestatus.com/features)
-![20240319100211](https://public.litong.life/blog/20240319100211.png?imageMogr2/quality/100/thumbnail/300x)
+![20240319100211](http://public.litong.life/blog/20240319100211.png?imageMogr2/quality/100/thumbnail/300x)
 通过VConsole，看到项目组的webview内核版本是70，确实不支持Object.fromEntries
-![20240319100619](https://public.litong.life/blog/20240319100619.png)
+![20240319100619](http://public.litong.life/blog/20240319100619.png)
 
 ##### 解决思路
 根源已经找出来了，剩下的就是考虑如何修复，可选的方案有：
@@ -171,18 +171,18 @@ tags: [技术,兼容性,Debug]
 2. 修改代码
 3. 预发布一个beta补丁版本
 4. 在demo项目中更新，部署后让项目组同学验证，组件终于可以正常渲染了
-![20240319103656](https://public.litong.life/blog/20240319103656.png?imageMogr2/quality/100/thumbnail/400x)
+![20240319103656](http://public.litong.life/blog/20240319103656.png?imageMogr2/quality/100/thumbnail/400x)
 5. 将hotfix分支合并回主分支，发布正式版本
 6. 让项目组安装正式版本，在业务项目中验证通过
 
 ## 复盘
 至此问题已经修复，但这里面始终有一个迷团没有解开，就是我用和项目组同样的机型和系统，都无法复现。作为一个老前端，直觉告诉我，看看能否通过userAgent发现什么，打开VConsole查看了我在wetest上找的云真机chrome版本竟然是**99**!!!
 
-![20240319110012](https://public.litong.life/blog/20240319110012.png?imageMogr2/quality/100/thumbnail/400x)
+![20240319110012](http://public.litong.life/blog/20240319110012.png?imageMogr2/quality/100/thumbnail/400x)
 
 为什么同样的机型和系统版本，chrome版本会相差这么多，我肯定是哪里存在知识盲区，难道是我打开云真机的姿势不对，于是我再次打开了wetest的云真机列表，发现有一列硬件型号，它甚至排在系统版本的前面，这个型号编码在userAgent中也有体现，难道说它会影响浏览器内核版本，我感觉越来越接近真相了。
 
-![20240319111440](https://public.litong.life/blog/20240319111440.png)
+![20240319111440](http://public.litong.life/blog/20240319111440.png)
 
 验证的方法很简单，选同样机型和系统版本的手机，通过VConsole查看浏览器内核版本
 
@@ -199,11 +199,11 @@ tags: [技术,兼容性,Debug]
 ### 问题定位的通用模型
 上面问题定位的过程，每一次迭代我都是在重复几个步骤，对这些步骤加以抽象就可以表示为下图，对于大部分的问题定位，都会经历这些步骤。
 
-![debug-model](https://public.litong.life/blog/debug-model.png?imageMogr2/quality/100/thumbnail/600x){: width='500'}
+![debug-model](http://public.litong.life/blog/debug-model.png?imageMogr2/quality/100/thumbnail/600x){: width='500'}
 
 而我们把所有迭代叠加到一起，会发现整个解决问题的过程其实是一棵决策树，我们通过问题表现来获得输入，再通过原因分析生成新的决策节点，然后通过解决方案筛选节点，最后验证获取新的问题表现，这样形成闭环反复迭代，最终使问题得以解决。
 
-![tree](https://public.litong.life/blog/strategy-tree.png?imageMogr2/quality/100/thumbnail/600x)
+![tree](http://public.litong.life/blog/strategy-tree.png?imageMogr2/quality/100/thumbnail/600x)
 
 ### 更多的思考
 虽然最终问题得以解决，但也暴露出两个问题:
