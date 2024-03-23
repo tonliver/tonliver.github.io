@@ -204,7 +204,7 @@ tags: [技术,兼容性,Debug]
 
 而我们把所有迭代叠加到一起，会发现整个解决问题的过程其实是一棵决策树，我们通过问题表现来获得输入，再通过原因分析生成新的决策节点，然后通过解决方案筛选节点，最后验证获取新的问题表现，这样形成闭环反复迭代，最终使问题得以解决。
 
-![tree](https://public.litong.life/blog/strategy-tree.png?imageMogr2/quality/100/thumbnail/600x)
+![strategy-tree](https://public.litong.life/blog/strategy-tree.png?imageMogr2/quality/100/thumbnail/850x){: width='600'}
 
 ### 更多的思考
 虽然最终问题得以解决，但也暴露出两个问题:
