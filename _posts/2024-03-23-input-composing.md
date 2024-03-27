@@ -128,7 +128,7 @@ function onInput(e) {
 }
 ```
 ##### 可以做的更好?
-接下来修复、发补丁版本、业务验证通过，至此这个问题已经解决。但是否还有优化的空间？其实这段代码里还有一个问题，对于原生InputEvent已经支持了isComposing属性的浏览器来说，监听compositionstart和compositionend事件属于重复工作，可以仅对不支持composing属性的浏览器做处理，那关键问题就是如何判断是否支持呢？显然不能通过浏览器版本来判断，可以通过**Feature Detection(特性嗅探/特性检测)**来判断。思路就是既然isComposing是InputEvent的属性，那可以创建一个InputEvent实例，如果原生支持，isComposing属性的值应该为true/false，不支持则为undefined，通过判断实例上isComposing属性类型是否为boolean间接判断浏览器是否支持该特性。核心代码如下:
+接下来修复、发补丁版本、业务验证通过，至此这个问题已经解决。但是否还有优化的空间？其实这段代码里还有一个问题，对于原生InputEvent已经支持了isComposing属性的浏览器来说，监听compositionstart和compositionend事件属于重复工作，可以仅对不支持composing属性的浏览器做处理，那关键问题就是如何判断是否支持呢？显然不能通过浏览器版本来判断，可以通过**Feature Detection(特性检测/特性嗅探)**来判断。思路就是既然isComposing是InputEvent的属性，那可以创建一个InputEvent实例，如果原生支持，isComposing属性的值应该为true/false，不支持则为undefined，通过判断实例上isComposing属性类型是否为boolean间接判断浏览器是否支持该特性。核心代码如下:
 ```ts
 const supportComposing = typeof (new InputEvent('input')).isComposing === 'boolean';
 if (!supportComposing) {

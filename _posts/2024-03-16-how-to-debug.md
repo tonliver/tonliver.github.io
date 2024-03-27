@@ -219,6 +219,6 @@ tags: [技术,兼容性,Debug]
 | [wetest](https://wetest.qq.com/)  | 使用云平台上的真机调试，有海量的机型 | 收费(新用户赠送60分钟试用时长) |
 | [vconsole](https://github.com/Tencent/vConsole) | 在移动端网页中显示类似于chrome devtools的小工具，可以查看控制台信息、系统信息、网络请求等 | 免费 |
 | [caniuse](https://caniuse.com/)  | 查看某一特性在各个浏览器中支持的版本 | 免费 |
-| [chromeStatus](https://chromestatus.com/feature) | 查看某一特性在各个平台的chrome上开始支持的版本（比caniuse更准确）| 免费 |
+| [chromeStatus](https://chromestatus.com/features) | 查看某一特性在各个平台的chrome上开始支持的版本（比caniuse更准确）| 免费 |
 | [chromeRelease](https://chromereleases.googleblog.com/) | 搜索指定版本chrome的发布时间 | 免费 |
 | [browserstack](https://www.browserstack.com/) | 兼容性调试的神器，与云真机类似，不过是专门针对浏览器的，可以选择任意系统下、任意版本的主流浏览器（Chrome、Safari、Firefox、Edge、Opera），并且**支持调试运行在localhost上的项目**，唯一缺点是收费 | 收费(每个浏览器版本60秒试用时长) |
