@@ -164,9 +164,16 @@ console.log(width);
 ```ts
 const supportSpacing = CanvasRenderingContext2D.prototype.hasOwnProperty('letterSpacing')
   && CanvasRenderingContext2D.prototype.hasOwnProperty('wordSpacing');
-  
+
 const createCalculator = () => {
   return supportSpacing ? new CanvasTextWidthCalculator() : new DomTextWidthCalculator();
 }
 ```
+
+### 应用场景
+1. 文章开始的响应式输入框方案（下篇分享完整实现）
+![IMB_vi1T4m](https://public.litong.life/blog/IMB_vi1T4m.GIF)
+2. 突破css的`text-overflow:ellipsis;`限制，实现可控的任意位置文字超长打点
+
+更多应该场景有待小伙伴们发现。
 
