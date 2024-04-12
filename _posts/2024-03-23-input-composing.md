@@ -3,7 +3,7 @@ layout: post
 title: Input组件无法输入中文的诡异问题
 date: 2024-03-23
 Author: 天枫皓月 
-tags: [技术,兼容性,输入]
+tags: [原创,技术,兼容性,输入]
 ---
 
 ## 问题描述
@@ -22,7 +22,6 @@ tags: [技术,兼容性,输入]
 > 在iphone SE上(userAgent: Mozilla/5.0 (iPhone; CPU iPhone OS15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148)，input组件在使用中文输入法（本质是**IME**，后面会展开来讲）时无法输入
 
 具体的表现如下图
-
 ![bug-case](https://public.litong.life/blog/bug-case.GIF)
 
 ### 原因分析
@@ -34,10 +33,10 @@ tags: [技术,兼容性,输入]
 
 | 类型 | 展示 |
 |:----|:-----|
-| 金额  | ![20240323172217](https://public.litong.life/blog/20240323172217.png){:width='300'} |
-| 卡号  | ![20240323172806](https://public.litong.life/blog/20240323172806.png){:width='300'} |
-| 有效期 | ![20240323173047](https://public.litong.life/blog/20240323173047.png){:width='300'} |
-| 自定义 | ![20240323173222](https://public.litong.life/blog/20240323173222.png){:width='300'} |
+| 金额  | ![20240323172217](https://public.litong.life/blog/20240323172217.png){: width='300'} |
+| 卡号  | ![20240323172806](https://public.litong.life/blog/20240323172806.png){: width='300'} |
+| 有效期 | ![20240323173047](https://public.litong.life/blog/20240323173047.png){: width='300'} |
+| 自定义 | ![20240323173222](https://public.litong.life/blog/20240323173222.png){: width='300'} |
 
 这套机制的整体流程如下图所示：
 

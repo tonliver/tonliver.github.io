@@ -3,7 +3,7 @@ layout: post
 title: avif格式图片兼容性诡异紫色边框问题
 date: 2023-03-29
 Author: 天枫皓月 
-tags: [技术,avif,兼容性]
+tags: [原创,技术,avif,兼容性]
 ---
 
 在部分安卓机上avif图片会出现诡异的紫色边框(cdn判断是支持avif格式的)
