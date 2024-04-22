@@ -9,9 +9,9 @@ tags: [原创,技术,Vue,Bug]
 ## 背景
 前几天接到业务方反馈的一个bug，大致的场景是有一个页面使用了我们的input和number-keyboard组件，页面路由回退的时候会报错，导致路由无法跳转。经过一番沟通，我得到的原始反馈信息如下：
 1. 复现步骤的录频（由于项目的安全要求，这里不能使用原视频，我用一个demo还原了视频中的操作步骤）
-![复现视频](https://public.litong.life/blog/IMB_D7xmli.GIF)
+  <video controls height="500" src="https://public.litong.life/blog/RPReplay_Final1713645291.mov"></video>
 2. 有错误信息的VConsole截图
-![20240421101924](https://public.litong.life/blog/20240421101924.png){:width="500"}
+  ![20240421101924](https://public.litong.life/blog/20240421101924.png){:width="500"}
 3. 业务同学的反馈描述
 > **场景那边的数字键盘有问题
 >
