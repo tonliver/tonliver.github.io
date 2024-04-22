@@ -131,6 +131,13 @@ ol, ul {
   }
 }
 
+li > ul {
+  list-style: circle;
+  > li:before {
+      content: '';
+  }
+}
+
 ul {
   > li:before {
     content: "\2022";
