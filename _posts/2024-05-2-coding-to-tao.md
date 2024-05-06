@@ -207,7 +207,7 @@ tags: [原创,技术,方法论,认知,道]
 将原来的primaryBoss、seceondaryBoss抽象为bosses数组，可以上报给任意多个数据源，消除数量上的依赖。同时又引入了数组这一实现。
 
 ### V5 —— 三生万物(消除特殊性)
-将bosses数组修改为IBossClient接口，由实现接口的SingleClient和GroupClient类来决定上报数据源的数量和类型，消除了实现依赖，可以上报给任意多个、任意的数据源。
+将bosses数组修改为IBossClient接口，由实现接口的SingleClient和GroupClient类来决定上报数据源的数量和类型，消除了实现依赖，可以上报给任意多个、任意类型的数据源。
 
 ![boss-reporter](https://public.litong.life/blog/boss-reporter.png)
 
