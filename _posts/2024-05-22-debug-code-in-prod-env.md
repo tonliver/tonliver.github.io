@@ -13,6 +13,7 @@ tags: [原创,技术,调试,源码,sourcemap]
 * JS代码是运行在用户浏览器中的，开发人员对运行时的代码没有控制权。
 
 那么有没有办法让我们在生产环境通过devtools也能看到源码，并且设置断点进行调试呢？答案就是sourcemap。
+
 # Sourcemap（源码映射）
 前端同学应该对sourcemap不陌生，我就不重复介绍了，推荐一篇文章[[What are source maps]](https://web.dev/articles/source-maps){:target="blank"}。
 
@@ -101,6 +102,7 @@ Safari devtools没有此功能╮(╯▽╰)╭
 ### 5. Local overrides(本地文件覆盖)
 #### 原理
 不上传sourcemap文件，利用devtools的本地文件覆盖功能，创建一个sourcemap的请求，并将本地的sourcemap文件作为请求内容返回。
+
 #### Chrome
 很可惜Chrome无法拦截Developer resources，所以也无法本地覆盖
 ![20240525044415](https://public.litong.life/blog/20240525044415.png){:width="700"}
@@ -110,6 +112,7 @@ Safari devtools没有此功能╮(╯▽╰)╭
 
 #### 优点
 * 不需要将sourcemap文件发布到服务器。
+
 #### 缺点
 * Chrome不支持
 
@@ -149,6 +152,7 @@ Safari可以正常使用
 ```
 #### 优点
 * 灵活、通用，有无限的发挥空间。
+
 #### 缺点
 * 依赖whistle这个代理工具
 * 有一丢丢学习成本。
