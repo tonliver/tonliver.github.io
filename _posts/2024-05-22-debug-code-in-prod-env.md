@@ -13,7 +13,7 @@ tags: [原创,技术,调试,源码,sourcemap]
 * JS代码是运行在用户浏览器中的，开发人员对运行时的代码没有控制权。
 
 那么有没有办法让我们在生产环境通过devtools也能看到源码，并且设置断点进行调试呢？答案就是sourcemap。
-# Sourcemap（源映射）
+# Sourcemap（源码映射）
 前端同学应该对sourcemap不陌生，我就不重复介绍了，推荐一篇文章[[What are source maps]](https://web.dev/articles/source-maps){:target="blank"}。
 
 效果如下图，加载的是打包后的js，但借助sourcemap可以看到源码，并设置断点进行调试。
