@@ -161,3 +161,61 @@ Safari可以正常使用
 最后对上面提到的各个方法的优缺点做个更直观的对比，大家可以根据实际情况选用适用的方案。
 
 ![20240525070143](https://public.litong.life/blog/20240525070143.png){:width="700"}
+
+## 综合实战练习
+> 运用sourcemap调试示例项目中的vue源码。
+
+### 分析
+要达成目的需要哪些条件
+1. 本地生成vue.js.map文件。
+2. 独立引用vue.js。
+3. 用上面的方法将sourcemap与js文件关联。
+
+#### 一. 生成vue.js.map
+1. 从github拉取vue源码[Vue core](https://github.com/vuejs/core/tree/main){:target="blank"}
+2. 安装依赖
+```bash
+pnpm i
+```
+3. 构建带有sourcemap的代码
+```bash
+pnpm run build runtime-dom --sourcemap
+```
+![20240525151011](https://public.litong.life/blog/20240525151011.png){:width="300"}
+
+#### 二. 将vue改为外部引用
+1. 更改demo项目的vite.config.ts
+```ts
+export default defineConfig({
+  base: './',
+  build: {
+    rollupOptions: {
+      external: ['vue'] // 将vue作为外部引用
+    }
+  },
+  plugins: [vue()]
+})
+```
+2. 把步骤一构建出的runtime-dom.esm-browser.prod.js移到demo项目的`public/vendor/`目录中。
+3. 为demo项目的index.html添加importmap
+```html
+<script type="importmap">
+{
+  "imports": {
+        "vue": "./vendor/runtime-dom.esm-browser.prod.js"
+  }
+}
+</script>
+```
+4. 构建和部署demo项目。可以看到vue已经通过加载runtime-dom.esm-browser.prod.js单独引用了。
+![20240525170452](https://public.litong.life/blog/20240525170452.png)
+
+#### 三. 关联sourcemap
+这里用whistle来关联，添加规则映射到本地sourcemap文件。
+![20240525171202](https://public.litong.life/blog/20240525171202.png)
+
+通过devtools可以看到sourcemap加载成功，也可以看到vue的源码了。
+![20240525171644](https://public.litong.life/blog/20240525171644.png){:width="700"}
+
+设置断点调试源码，已经可以正常工作了。
+![debug-vue](https://public.litong.life/blog/debug-vue.gif)
