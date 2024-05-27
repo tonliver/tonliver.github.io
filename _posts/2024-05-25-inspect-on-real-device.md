@@ -75,7 +75,7 @@ npm update remotedebug-ios-webkit-adapter -g
 
 ### 启动
 ```bash
-remotedebug-ios-webkit-adapter is listening on port 9000
+remotedebug_ios_webkit_adapter --port=9000
 ```
 
 ### 配置
