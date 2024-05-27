@@ -24,7 +24,7 @@ baseurl:
 #
 
 # 你的博客logo图片URL，建议尺寸不超过300px × 300px
-avatar: https://i.mjj.rip/2023/06/15/70b6dfc6518de626edcd7d1747c1280c.png
+avatar: https://public.litong.life/blog/avatar.png
 
 # 你的favicon（出现在浏览器tab上）图片URL，建议使用较小(64px × 64px)的图片
 favicon: /assets/imgs/favicon.ico
