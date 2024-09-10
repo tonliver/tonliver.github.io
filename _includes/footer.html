@@ -3,3 +3,8 @@
 {% if site.footer-text %}
 <p>{{ site.footer-text }}</p>
 {% endif %}
+{% if site.beian-text %}
+<p>
+  <a class="beian-link" target="_blank" href="{{ site.beian-link }}">{{ site.beian-text }}</a>
+</p>
+{% endif %}
