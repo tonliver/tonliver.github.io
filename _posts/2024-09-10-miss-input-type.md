@@ -47,7 +47,7 @@ function clicked() {
 }
 
 function onInput(e: InputEvent) {
-  console.log(e.inputType); // ios <= 16，为空字符串，其它版本为'deleteContentBackward'
+  console.log(e.inputType); // ios < 16.5为空字符串,其它版本为'deleteContentBackward'
 }
 </script>
 ```
