@@ -21,15 +21,21 @@ ios < 16.5
 ![20240910181250](https://public.litong.life/blog/20240910181250.png)
 
 Sail组件库有一个设计原则，就是尽量与系统原生行为保持一致。这里为了让input在使用了自定义键盘后，行为与使用系统键盘一致，按下删除键时，会手动创建一个InputEvent事件，并由input元素dispatch出去。这样对于调用者来说，不管是系统键盘，还是自定义键盘，在按下删除键时，如下代码都会有一致的行为。
+
 ```ts
 input.addEventListener('input', (e: InputEvent) => {
   console.log(e.inputType); // deleteContentBackward
 });
 ```
-### 问题本质 
+
+而系统键盘的backspace键能正常删除，但自定义键盘不能，两者的区别就是系统键盘的InputEvent是系统触发的，自定义键盘是由我们的代码new InputEvent并dispatch的，由此可见在部分机型上new InputEvent的表现与系统抛出的事件表现不一致，可能存在兼容性问题。
+
+### 问题本质
 当**ios < 16.5**，通过`new InputEvent('input', { inputType: 'deleteContentBackward' })`手动创建的事件，监听后`event.inputType`为空字符串，而期望得到`deleteContentBackward`。经实测，不仅是`deleteContentBackward`，所有的inputType值都会变为空字符串。
 
-#### 代码示例
+![20240911103020](https://public.litong.life/blog/20240911103020.png)
+
+#### 最小复现步骤
 [演练场传送门](https://playcode.io/1993768){:target="blank"}
 
 ```vue
@@ -51,7 +57,6 @@ function onInput(e: InputEvent) {
 }
 </script>
 ```
-
 通过查阅MDN、caniuse、w3c文档可以看到inputType是InputEvent的标准属性，各主流浏览器在很早均实现了该接口，并无兼容性问题。
 
 [caniuse传送门](https://www.w3.org/TR/uievents/#inputevent){:target="blank"}
@@ -78,7 +83,7 @@ function onInput(e: InputEvent) {
 
 ![20240910173017](https://public.litong.life/blog/20240910173017.png)
 
-### 代码
+### 核心代码
 以删除操作为例
 
 ```ts
