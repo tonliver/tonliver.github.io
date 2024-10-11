@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 踩了justify-content兼容性的坑
+title: 一个justify-content兼容性的坑
 date: 2024-10-11
 Author: 天枫皓月
 tags: [兼容性,CSS]
