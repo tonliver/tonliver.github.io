@@ -71,6 +71,13 @@ tags: [兼容性,CSS]
 ## 结论
 1. ios >= 15.4和chrome >= 93，flex布局中，`justify-content: end;`与`justify-content: flex-end;`表现一致，都符合预期。
 2. ios < 15.4和chrome < 93，flex布局中，`justify-content: end;`无法生效，`justify-content: flex-end;`符合预期。
-3. 所有版本的grid布局，`justify-content: end;`都符合预期。
+3. 使用grid布局，`justify-content: end;`在各个版本的浏览器中表现都符合预期。
 
 **因此，对`justify-content`设置值时，为了保障最大程度的兼容性，如果是flex布局，使用`flex-start`或`flex-end`，其它布局方式则使用`start`、`end`、`left`或`right`**。
+
+**还有一个值得注意的点，`align-items`和`justify-content`非常类似，上面的结论对于`align-items`属性同样适用。**
+
+#### `align-items`属性chrome 87 VS. chrome 95
+在这个示例中，垂直方向排列受`align-items`属性控制，低于chrome 93时，`align-items: end;`表现不符合预期，而`flex-end`则表现一致。
+
+<img src="https://public.litong.life/blog/20241012103059.png" width="500" />
