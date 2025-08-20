@@ -304,7 +304,7 @@ Renderer即是在对比视图中如何渲染新/旧版本的内容，而Highligh
 2. 递归对每个子节点进行第3步，直到遇到纯文本节点。
 3. 对纯文本节点执行第6步，做字符级别的diff。
    
-![20250820183046](https://public.litong.life/blog/20250820183046.png)
+![20250820184445](https://public.litong.life/blog/20250820184445.png)
 
 ## Highlighter
 未完待续
